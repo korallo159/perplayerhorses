@@ -1,0 +1,10 @@
+name: PerPlayerHorse
+version: ${project.version}
+main: koral.horseplugin.HorsePlugin
+api-version: 1.13
+authors: [koral]
+description: Plugin for perplayer horses
+commands:
+  wierzchowiec:
+  wierzchowiecvip:
+  wierzchowiecmvip:
