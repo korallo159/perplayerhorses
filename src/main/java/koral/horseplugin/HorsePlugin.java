@@ -30,6 +30,9 @@ public final class HorsePlugin extends JavaPlugin {
         this.getCommand("wierzchowiec").setExecutor(this.commandExecutor);
         this.getCommand("wierzchowiecvip").setExecutor(this.commandExecutor);
         this.getCommand("wierzchowiecmvip").setExecutor(this.commandExecutor);
+        this.getCommand("kon1").setExecutor(this.commandExecutor);
+        this.getCommand("kon2").setExecutor(this.commandExecutor);
+        this.getCommand("kon3").setExecutor(this.commandExecutor);
         // Plugin startup logic
 
     }

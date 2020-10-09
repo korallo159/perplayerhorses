@@ -1,4 +1,5 @@
 package koral.horseplugin;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -10,9 +11,12 @@ import org.bukkit.inventory.ItemStack;
 public class HorsePluginCommands implements CommandExecutor {
     HorsePlugin plugin;
     HorsePluginSummonHorse horseSummon;
+    HorsePluginListener horseListener;
+    HorsePluginCooldown cooldown = new HorsePluginCooldown();
     public HorsePluginCommands(HorsePlugin plugin) {
         this.plugin = plugin;
       horseSummon = new HorsePluginSummonHorse(plugin);
+        horseListener = new HorsePluginListener(plugin);
     }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -23,14 +27,33 @@ public class HorsePluginCommands implements CommandExecutor {
                 horseSummon.SummonDefaultPlayerHorse(player);
             }
             if (command.getName().equals("wierzchowiecvip")) {
+                if(!cooldown.checkPlayerCooldown(player, 5)) {
                 horseSummon.checkHorsePlayer(player);
                 horseSummon.SummonSkeletonPlayerHorse(player);
+                    cooldown.setSystemTime(player);
+                }
             }
             if (command.getName().equals("wierzchowiecmvip")) {
-                horseSummon.checkHorsePlayer(player);
-                horseSummon.SummonZombiePlayerHorse(player);
+                if(!cooldown.checkPlayerCooldown(player, 5)) {
+                    horseSummon.checkHorsePlayer(player);
+                    horseSummon.SummonZombiePlayerHorse(player);
+                    cooldown.setSystemTime(player);
+                }
 
+            }
 
+            if(command.getName().equals("kon1"))
+            {
+            player.getInventory().addItem(horseListener.getHorseBook1(1));
+            }
+            if(command.getName().equals("kon2"))
+            {
+                    player.getInventory().addItem(horseListener.getHorseBook2(1));
+            }
+            if(command.getName().equals("kon3"))
+            {
+                player.getInventory().addItem(horseListener.getHorseBook3(1));
+                player.sendMessage(ChatColor.RED + "Dodałeś księge konia do swojego ekwipunku");
             }
         }
 

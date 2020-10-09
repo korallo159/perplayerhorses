@@ -6,12 +6,20 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.event.block.Action;
+import org.bukkit.inventory.meta.ItemMeta;
+import java.util.ArrayList;
 
 public class HorsePluginListener implements Listener {
+    HorsePluginSummonHorse summonHorse;
     HorsePlugin plugin;
+    HorsePluginCooldown cooldown = new HorsePluginCooldown();
     public HorsePluginListener(final HorsePlugin plugin) {
         this.plugin = plugin;
+        summonHorse = new HorsePluginSummonHorse(plugin);
     }
     @EventHandler
     public void onHorseTag(PlayerInteractEntityEvent e){
@@ -44,6 +52,91 @@ public class HorsePluginListener implements Listener {
 
 
 
+
+
+
+
+    }
+
+    @EventHandler
+    public void onPlayerPPM(PlayerInteractEvent event){
+        Player player = event.getPlayer();
+        Action action = event.getAction();
+        ItemStack item = event.getItem();
+        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)){
+            if (event.getItem() != null && item.getItemMeta().getLore() != null && item.getItemMeta().getLore().contains(ChatColor.RED + "Kliknij prawym aby przywołać wierzchowca klasy 1")){
+                if(!cooldown.checkPlayerCooldown(player, 15)) {
+                    summonHorse.checkHorsePlayer(player);
+                    summonHorse.SummonDefaultPlayerHorse(player);
+                    cooldown.setSystemTime(player);
+                }
+
+            }
+            if (event.getItem() != null && item.getItemMeta().getLore() != null && item.getItemMeta().getLore().contains(ChatColor.RED + "Kliknij prawym aby przywołać wierzchowca klasy 2")){
+                if(!cooldown.checkPlayerCooldown(player, 15)) {
+                    summonHorse.checkHorsePlayer(player);
+                    summonHorse.SummonBattlePlayerHorse(player);
+                    cooldown.setSystemTime(player);
+                }
+
+
+            }
+
+            if (event.getItem() != null && item.getItemMeta().getLore() != null && item.getItemMeta().getLore().contains(ChatColor.RED + "Kliknij prawym aby przywołać wierzchowca klasy 3")){
+                if(!cooldown.checkPlayerCooldown(player, 15)) {
+                    summonHorse.checkHorsePlayer(player);
+                    summonHorse.SummonMilitaryPlayerHorse(player);
+                    cooldown.setSystemTime(player);
+                }
+
+            }
+
+        }
+    }
+
+    public ItemStack getHorseBook1(int amount) {
+        ItemStack horsebook = new ItemStack(Material.FERMENTED_SPIDER_EYE);
+        ItemMeta itemMeta = horsebook.getItemMeta();
+
+        itemMeta.setDisplayName(ChatColor.RED + "Przywołanie wierzchowca klasy I");
+
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add((ChatColor.RED + "Kliknij prawym aby przywołać wierzchowca klasy 1"));
+        itemMeta.setLore(lore);
+        //set the meta
+        horsebook.setItemMeta(itemMeta);
+
+        return horsebook;
+    }
+
+    public ItemStack getHorseBook2(int amount) {
+        ItemStack horsebook = new ItemStack(Material.FERMENTED_SPIDER_EYE);
+        ItemMeta itemMeta = horsebook.getItemMeta();
+
+        itemMeta.setDisplayName(ChatColor.RED + "Przywołanie wierzchowca klasy II");
+
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add((ChatColor.RED + "Kliknij prawym aby przywołać wierzchowca klasy 2"));
+        itemMeta.setLore(lore);
+        //set the meta
+        horsebook.setItemMeta(itemMeta);
+
+        return horsebook;
+    }
+
+    public ItemStack getHorseBook3(int amount) {
+        ItemStack horsebook = new ItemStack(Material.FERMENTED_SPIDER_EYE);
+        ItemMeta itemMeta = horsebook.getItemMeta();
+
+        itemMeta.setDisplayName(ChatColor.RED + "Przywołanie wierzchowca klasy III");
+
+        ArrayList<String> lore = new ArrayList<String>();
+        lore.add((ChatColor.RED + "Kliknij prawym aby przywołać wierzchowca klasy 3"));
+        itemMeta.setLore(lore);
+        //set the meta
+        horsebook.setItemMeta(itemMeta);
+
+        return horsebook;
     }
 
 
