@@ -41,7 +41,7 @@ public class HorsePluginSummonHorse {
     HorsePluginSpawnHorseLocation horseLoc = new HorsePluginSpawnHorseLocation();
     public void SummonDefaultPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) player.getWorld().spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -49,7 +49,7 @@ public class HorsePluginSummonHorse {
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.setColor(Horse.Color.WHITE);
                 horse.setRemoveWhenFarAway(true);
-                horseAttributes(horse, 30, 0.3075, 0.9);
+                horseAttributes(horse, 30, 0.2950, 0.8);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -63,7 +63,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonBattlePlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) player.getWorld().spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -71,7 +71,7 @@ public class HorsePluginSummonHorse {
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.getInventory().setArmor(new ItemStack(Material.IRON_HORSE_ARMOR));
                 horse.setColor(Horse.Color.DARK_BROWN);
-                horseAttributes(horse, 34, 0.3375, 1.0);
+                horseAttributes(horse, 34, 0.3000, 0.85);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -84,7 +84,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonMilitaryPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) player.getWorld().spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -92,7 +92,7 @@ public class HorsePluginSummonHorse {
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.getInventory().setArmor(new ItemStack(Material.IRON_HORSE_ARMOR));
                 horse.setColor(Horse.Color.BLACK);
-                horseAttributes(horse, 36, 0.3375, 1.0);
+                horseAttributes(horse, 36, 0.3100, 0.9);
                 horse.setRemoveWhenFarAway(true);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
@@ -106,14 +106,14 @@ public class HorsePluginSummonHorse {
 
     public void SummonSkeletonPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 AbstractHorse horse = (AbstractHorse) player.getWorld().spawnEntity(randomloc, EntityType.SKELETON_HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
                 horse.setBreed(false);
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.setRemoveWhenFarAway(true);
-                abstractHorseAttributes(horse, 40,0.3575,1.0);
+                abstractHorseAttributes(horse, 40,0.3375,0.91);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -126,14 +126,14 @@ public class HorsePluginSummonHorse {
 
     public void SummonZombiePlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 AbstractHorse horse = (AbstractHorse) player.getWorld().spawnEntity(randomloc, EntityType.ZOMBIE_HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
                 horse.setBreed(false);
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.setRemoveWhenFarAway(true);
-                abstractHorseAttributes(horse, 60,0.3575,1.0);
+                abstractHorseAttributes(horse, 60,0.3475,0.95);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -146,7 +146,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonTestPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 50; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) Bukkit.getWorld("world").spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -160,7 +160,7 @@ public class HorsePluginSummonHorse {
         }
     }
 
-    public void checkHorsePlayer(Player player){
+    public void checkHorsePlayer2(Player player){
         for(World w : Bukkit.getWorlds()){
             for(Entity e : w.getEntities()){
                 if(e.getName().equals(plugin.getConfig().getString("horseof") + player.getName())) {
@@ -171,6 +171,19 @@ public class HorsePluginSummonHorse {
         }
 
     }
+
+    public void checkHorsePlayer(Player player){
+        for(World w : Bukkit.getWorlds()){
+            for(Entity e : w.getEntities()){
+                  if (e instanceof Horse){ // Uznaje, ze e nie jest istanceof horse
+                      e.remove();
+                  }
+                  else return;   // <- to sie spelnia
+            }
+        }
+
+    }
+
 
 
 }

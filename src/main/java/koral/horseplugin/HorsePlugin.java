@@ -27,7 +27,6 @@ public final class HorsePlugin extends JavaPlugin {
         this.Listener = new HorsePluginListener(this);
         getServer().getPluginManager().registerEvents(Listener, this);
         this.commandExecutor = new HorsePluginCommands(this);
-        this.getCommand("wierzchowiec").setExecutor(this.commandExecutor);
         this.getCommand("wierzchowiecvip").setExecutor(this.commandExecutor);
         this.getCommand("wierzchowiecmvip").setExecutor(this.commandExecutor);
         this.getCommand("kon1").setExecutor(this.commandExecutor);
