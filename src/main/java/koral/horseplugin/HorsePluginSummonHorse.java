@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 public class HorsePluginSummonHorse {
 
     HorsePlugin plugin;
+    HorsePluginCooldown cooldown = new HorsePluginCooldown();
 
     public HorsePluginSummonHorse(HorsePlugin plugin) {
         this.plugin = plugin;
@@ -41,7 +42,7 @@ public class HorsePluginSummonHorse {
     HorsePluginSpawnHorseLocation horseLoc = new HorsePluginSpawnHorseLocation();
     public void SummonDefaultPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) player.getWorld().spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -54,8 +55,9 @@ public class HorsePluginSummonHorse {
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
             }
-            if (i == 9)
+            if (i == 9) {
                 player.sendMessage(ChatColor.RED + "Nie można przywołać konia w tym miejscu!");
+            }
 
         }
     }
@@ -63,7 +65,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonBattlePlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) player.getWorld().spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -84,7 +86,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonMilitaryPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) player.getWorld().spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -106,7 +108,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonSkeletonPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 AbstractHorse horse = (AbstractHorse) player.getWorld().spawnEntity(randomloc, EntityType.SKELETON_HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -126,7 +128,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonZombiePlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 AbstractHorse horse = (AbstractHorse) player.getWorld().spawnEntity(randomloc, EntityType.ZOMBIE_HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -146,7 +148,7 @@ public class HorsePluginSummonHorse {
 
     public void SummonTestPlayerHorse(Player player) {
         Location randomloc = horseLoc.getRandomLocation(horseLoc.FirstLoc(player, 10), horseLoc.SecondLoc(player, 10));
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 10; i++) {
             if (randomloc.getBlock().getType().isEmpty()) {
                 Horse horse = (Horse) Bukkit.getWorld("world").spawnEntity(randomloc, EntityType.HORSE);
                 horse.setCustomName(plugin.getConfig().getString("horseof") + player.getName());
@@ -175,10 +177,15 @@ public class HorsePluginSummonHorse {
     public void checkHorsePlayer(Player player){
         for(World w : Bukkit.getWorlds()){
             for(Entity e : w.getEntities()){
-                  if (e instanceof Horse){ // Uznaje, ze e nie jest istanceof horse
-                      e.remove();
-                  }
-                  else return;   // <- to sie spelnia
+                if(e instanceof Horse)
+                    if(((Horse) e).getOwner() != null)
+                    if(((Horse) e).getOwner().getName().equals(player.getName()))
+                    e.remove();
+
+                if(e instanceof AbstractHorse)
+                    if(((AbstractHorse) e).getOwner() != null)
+                        if(((AbstractHorse) e).getOwner().getName().equals(player.getName()))
+                            e.remove();
             }
         }
 
