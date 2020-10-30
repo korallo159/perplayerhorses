@@ -22,9 +22,8 @@ public class HorsePluginCommands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            if (command.getName().equals("wierzchowiecvip")) {
+            if (command.getName().equals("wierzchowiecsvip")) {
                 if(!cooldown.checkPlayerCooldown(player, 5)) {
-                horseSummon.checkHorsePlayer(player);
                 horseSummon.SummonSkeletonPlayerHorse(player);
                     cooldown.setSystemTime(player, 0);
                 }

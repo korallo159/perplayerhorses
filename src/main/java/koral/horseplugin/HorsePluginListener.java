@@ -11,6 +11,7 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.vehicle.VehicleEnterEvent;
+import org.bukkit.inventory.AbstractHorseInventory;
 import org.bukkit.inventory.HorseInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.event.block.Action;
@@ -37,9 +38,9 @@ public class HorsePluginListener implements Listener {
 
     @EventHandler
     public void onInventoryOpenEvent(InventoryOpenEvent e){
-        HorseInventory i = (HorseInventory) e.getInventory();
 
         if(e.getInventory() instanceof HorseInventory){
+            HorseInventory i = (HorseInventory) e.getInventory();
             Horse h = (Horse) i.getHolder();
             Player p = (Player) e.getPlayer();
             if(!h.getOwner().getName().equals(p.getName()) && h.getOwner() != null) {
@@ -47,6 +48,16 @@ public class HorsePluginListener implements Listener {
             }
 
         }
+        if(e.getInventory() instanceof AbstractHorseInventory){
+            AbstractHorseInventory i = (AbstractHorseInventory) e.getInventory();
+            AbstractHorse h = (AbstractHorse) i.getHolder();
+            Player p = (Player) e.getPlayer();
+            if(!h.getOwner().getName().equals(p.getName()) && h.getOwner() != null) {
+                e.setCancelled(true);
+            }
+
+        }
+
     }
 
 

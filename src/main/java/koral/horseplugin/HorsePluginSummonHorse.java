@@ -50,7 +50,7 @@ public class HorsePluginSummonHorse {
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.setColor(Horse.Color.WHITE);
                 horse.setRemoveWhenFarAway(true);
-                horseAttributes(horse, 30, 0.2950, 0.8);
+                horseAttributes(horse, 30, 0.2750, 0.7);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -73,7 +73,7 @@ public class HorsePluginSummonHorse {
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.getInventory().setArmor(new ItemStack(Material.IRON_HORSE_ARMOR));
                 horse.setColor(Horse.Color.DARK_BROWN);
-                horseAttributes(horse, 34, 0.3000, 0.85);
+                horseAttributes(horse, 34, 0.2850, 0.8);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -94,7 +94,7 @@ public class HorsePluginSummonHorse {
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.getInventory().setArmor(new ItemStack(Material.IRON_HORSE_ARMOR));
                 horse.setColor(Horse.Color.BLACK);
-                horseAttributes(horse, 36, 0.3100, 0.9);
+                horseAttributes(horse, 36, 0.2900, 0.8);
                 horse.setRemoveWhenFarAway(true);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
@@ -115,7 +115,7 @@ public class HorsePluginSummonHorse {
                 horse.setBreed(false);
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.setRemoveWhenFarAway(true);
-                abstractHorseAttributes(horse, 40,0.3375,0.91);
+                abstractHorseAttributes(horse, 40,0.2950,0.8);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;
@@ -135,7 +135,7 @@ public class HorsePluginSummonHorse {
                 horse.setBreed(false);
                 horse.getInventory().setSaddle(new ItemStack(Material.SADDLE));
                 horse.setRemoveWhenFarAway(true);
-                abstractHorseAttributes(horse, 60,0.3475,0.95);
+                abstractHorseAttributes(horse, 60,0.2950,0.8);
                 horse.setOwner(player);
                 player.sendMessage(ChatColor.GREEN + "Przywołałeś wierzchowca, powinien być gdzieś w pobliżu");
                 break;

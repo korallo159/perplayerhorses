@@ -5,7 +5,7 @@ api-version: 1.13
 authors: [koral]
 description: Plugin for perplayer horses
 commands:
-  wierzchowiecvip:
+  wierzchowiecsvip:
     permission: perplayerhorse.vip
   wierzchowiecmvip:
     permission: perplayerhorse.mvip
