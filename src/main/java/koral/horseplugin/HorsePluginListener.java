@@ -7,6 +7,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -46,7 +47,6 @@ public class HorsePluginListener implements Listener {
             if(!h.getOwner().getName().equals(p.getName()) && h.getOwner() != null) {
                 e.setCancelled(true);
             }
-
         }
         if(e.getInventory() instanceof AbstractHorseInventory){
             AbstractHorseInventory i = (AbstractHorseInventory) e.getInventory();
@@ -60,6 +60,17 @@ public class HorsePluginListener implements Listener {
 
     }
 
+    @EventHandler
+   public void onHorseInvClickEvent(InventoryClickEvent e){
+        if(e.getInventory() instanceof  HorseInventory){
+            if(e.getCurrentItem().getType().equals(Material.SADDLE))
+                e.setCancelled(true);
+        }
+        if(e.getInventory() instanceof  AbstractHorseInventory){
+            if(e.getCurrentItem().getType().equals(Material.SADDLE))
+                e.setCancelled(true);
+        }
+    }
 
 
 
@@ -124,7 +135,7 @@ public class HorsePluginListener implements Listener {
     }
 
     public ItemStack getHorseBook1(int amount) {
-        ItemStack horsebook = new ItemStack(Material.FERMENTED_SPIDER_EYE);
+        ItemStack horsebook = new ItemStack(Material.SADDLE);
         ItemMeta itemMeta = horsebook.getItemMeta();
 
         itemMeta.setDisplayName(ChatColor.RED + "Przywołanie wierzchowca klasy I");
@@ -139,7 +150,7 @@ public class HorsePluginListener implements Listener {
     }
 
     public ItemStack getHorseBook2(int amount) {
-        ItemStack horsebook = new ItemStack(Material.FERMENTED_SPIDER_EYE);
+        ItemStack horsebook = new ItemStack(Material.SADDLE);
         ItemMeta itemMeta = horsebook.getItemMeta();
 
         itemMeta.setDisplayName(ChatColor.RED + "Przywołanie wierzchowca klasy II");
@@ -154,7 +165,7 @@ public class HorsePluginListener implements Listener {
     }
 
     public ItemStack getHorseBook3(int amount) {
-        ItemStack horsebook = new ItemStack(Material.FERMENTED_SPIDER_EYE);
+        ItemStack horsebook = new ItemStack(Material.SADDLE);
         ItemMeta itemMeta = horsebook.getItemMeta();
 
         itemMeta.setDisplayName(ChatColor.RED + "Przywołanie wierzchowca klasy III");
@@ -175,6 +186,14 @@ public class HorsePluginListener implements Listener {
             Player player = Bukkit.getServer().getPlayer(playername);
             cooldown.setSystemTime(player, 1200);
             player.sendMessage(ChatColor.DARK_RED + "Twój koń zginął! Będziesz potrzebował więcej czasu aby go przywołać");
+            event.getDrops().clear();
+        }
+       else if(e instanceof AbstractHorse && ((AbstractHorse) e).getOwner() != null){
+            String playername =  ((AbstractHorse)e).getOwner().getName();
+            Player player = Bukkit.getServer().getPlayer(playername);
+            cooldown.setSystemTime(player, 1200);
+            player.sendMessage(ChatColor.DARK_RED + "Twój koń zginął! Będziesz potrzebował więcej czasu aby go przywołać");
+            event.getDrops().clear();
         }
     }
 

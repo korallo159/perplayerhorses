@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 
 public class HorsePluginCooldown {
-    HashMap<String, Long> cooldown = new HashMap<>();                           //ustawia graczu czas aktualny + INT dodatkowego czasu w sekundach
+    public static HashMap<String, Long> cooldown = new HashMap<>();                           //ustawia graczu czas aktualny + INT dodatkowego czasu w sekundach
     public void setSystemTime(Player player, Integer additionaltime){
         cooldown.put(player.getUniqueId().toString(), (System.currentTimeMillis() / 1000 + additionaltime));
 
